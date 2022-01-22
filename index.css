@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    right: 70px;
+    top: 128px;
+    width: 550px;
+    height: 600px;
+}
+
+.blob {
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.blob:nth-child(2) {
+    filter: blur(80px);
+}
+
+.map {
+    width: 800px;
+    height: 600px;
+    background-color: rgb(243, 237, 237);
+    position: relative;
+    top: 8px;
+    left: 10px;
+}
+
+#gameinfo {
+    width: 800px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cur_sco {
+    width: 800px;
+    height: 20px;
+}
+
+#cur_sco span {
+    float: right;
+    right: 51px;
+    width: 120px;
+    background: linear-gradient(to right, rgb(4, 94, 170) 10%, rgb(1, 152, 216) 25%, #ff0052 40%, rgb(179, 233, 32) 70%, rgb(20, 228, 243) 95%, transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 贪食蛇盒子样式 */
+#gameinfo .tcs_div {
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+    position: relative;
+    box-shadow: 16px 14px 20px #0000008c;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameinfo .tcs_div::before {
+    content: '';
+    background-image: conic-gradient(#ff0052 20deg,
+            rgb(179, 233, 32) 40deg,
+            rgb(20, 228, 243) 80deg,
+            rgb(1 152 216) 95deg,
+            transparent 120deg);
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    animation: rotate .65s linear infinite;
+}
+
+#gameinfo .tcs_div::after {
+    content: '贪吃蛇';
+    width: 70px;
+    height: 70px;
+    background-color: #101010;
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ffea;
+    letter-spacing: 3px;
+    font-size: 18px;
+    box-shadow: inset 20px 20px 20px #0000008c;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+/* 贪吃蛇样式底部 */
+
+
+/* 文本颜色渐变样式 */
+#scoreinfo {
+    margin-top: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#scoreinfo #score {
+    background: linear-gradient(to left, rgb(4, 94, 170) 10%, rgb(1, 152, 216) 25%, #ff0052 40%,
+            rgb(179, 233, 32) 70%,
+            rgb(20, 228, 243) 95%,
+            transparent 100%);
+    -webkit-background-clip: text;
+    /*必需加前缀 -webkit- 才支持这个text值 */
+    -webkit-text-fill-color: transparent;
+    /*text-fill-color会覆盖color所定义的字体颜色： */
+}
+
+#scoreinfo #champ {
+    background: linear-gradient(to right, rgb(4, 94, 170) 10%, rgb(1, 152, 216) 25%, #ff0052 40%,
+            rgb(179, 233, 32) 70%,
+            rgb(20, 228, 243) 95%,
+            transparent 100%);
+    -webkit-background-clip: text;
+    /*必需加前缀 -webkit- 才支持这个text值 */
+    -webkit-text-fill-color: transparent;
+    /*text-fill-color会覆盖color所定义的字体颜色： */
+}
+
+/* 文本颜色渐变样式底部 */
+
+
+/* icon样式 */
+#scoreinfo .icon {
+    width: 30px;
+
+}
+
+#scoreinfo .icon path {
+    fill: transparent;
+    stroke-width: 40;
+    stroke: #31e8ff;
+}
+
+#scoreinfo .icon.star path {
+    stroke-dasharray: 3540;
+    stroke-dashoffset: 0;
+}
+
+#scoreinfo .icon.star path {
+    animation: animate-star 2s linear infinite;
+}
+
+#scoreinfo .icon.heart path {
+    stroke-dasharray: 2775;
+    stroke-dashoffset: 0;
+}
+
+#scoreinfo .icon.heart path {
+    animation: animate-heart 2s linear infinite;
+}
+
+/* icon动画样式 */
+@keyframes animate-heart {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    40% {
+        stroke-dashoffset: 2775;
+    }
+
+    80% {
+        stroke-dashoffset: 5550;
+        fill: transparent;
+    }
+
+    100% {
+        stroke-dashoffset: 5550;
+        fill: rgb(1, 152, 216);
+    }
+}
+
+@keyframes animate-star {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    40% {
+        stroke-dashoffset: 3540;
+    }
+
+    80% {
+        stroke-dashoffset: 7080;
+        fill: transparent;
+    }
+
+    100% {
+        stroke-dashoffset: 7080;
+        fill: #ff0052;
+    }
+}
+
+/* 动画样式底部 */
+
+/* 全局组件按钮样式   以后补全
+.default {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.primary {
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+}
+
+.success {
+    color: #fff;
+    background-color: #0de982;
+    border-color: #0de982;
+}
+.warning {
+    color: #fff;
+    background-color: #e6a23c;
+    border-color: #e6a23c;
+}
+.danger {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+} */
+
+#caiji {
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+    padding: 8px;
+    color: #101010c7;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+#middle {
+    color: #fff;
+    background-color: #0de982;
+    border-color: #0de982;
+    padding: 8px;
+    color: #ff0000;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+#nb {
+    color: #fff;
+    background-color: #e6a23c;
+    border-color: #e6a23c;
+    padding: 8px;
+    color: #606266fc;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+#retry {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+    padding: 8px;
+    color: rgb(4 94 170 / 83%);
+    font-weight: 600;
+    border-radius: 20px;
+}
